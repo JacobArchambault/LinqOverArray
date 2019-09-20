@@ -11,11 +11,15 @@ namespace LinqOverArray
             Console.WriteLine("***** Fun with LINQ to Objects *****\n");
             QueryOverStrings();
             QueryOverStringsWithExtensionMethods();
+            QueryOverStringsLongHand();
+            QueryOverInts();
             Console.ReadLine();
         }
 
         static void QueryOverStrings()
         {
+            Console.WriteLine("***** Query over strings *****");
+
             // Assume we have an array of strings.
             string[] currentVideoGames = { "Morrowind", "Uncharted 2", "Fallout 3", "Daxter", "System Shock 2" };
 
@@ -27,10 +31,12 @@ namespace LinqOverArray
             // Print out the results.
             foreach (string s in subset)
                 Console.WriteLine("Item: {0}", s);
+            Console.WriteLine();
         }
 
         static void QueryOverStringsWithExtensionMethods()
         {
+            Console.WriteLine("***** Query over strings with extension methods *****");
             // Assume we have an array of strings.
             string[] currentVideoGames = { "Morrowind", "Uncharted 2", "Fallout 3", "Daxter", "System Shock 2" };
 
@@ -41,10 +47,13 @@ namespace LinqOverArray
             foreach (string s in subset)
                 Console.WriteLine("Item: {0}", s);
 
+            Console.WriteLine();
         }
 
         static void QueryOverStringsLongHand()
         {
+            Console.WriteLine("***** Query over strings, longhand *****");
+
             // Assume we have an array of strings.
             string[] currentVideoGames = { "Morrowind", "Uncharted 2", "Fallout 3", "Daxter", "System Shock 2" };
 
@@ -60,7 +69,29 @@ namespace LinqOverArray
             Array.Sort(gameWithSpaces);
 
             // Print out the results
+            foreach (string s in gameWithSpaces)
+            {
+                if (s != null)
+                    Console.WriteLine("Item: {0}", s);
+            }
+            ReflectOverQueryResults(gameWithSpaces);
 
+            Console.WriteLine();
+        }
+
+        static void QueryOverInts()
+        {
+            Console.WriteLine("***** Query over ints *****");
+            int[] numbers = { 10, 20, 30, 40, 1, 2, 3, 8 };
+
+            // Print only items less than 10.
+            var subset = from i in numbers where i < 10 select i;
+
+            foreach (var i in subset)
+                Console.WriteLine("Item: {0}", i);
+            ReflectOverQueryResults(subset);
+
+            Console.WriteLine();
         }
 
         static void ReflectOverQueryResults(object resultSet, string queryType = "Query Expressions")
