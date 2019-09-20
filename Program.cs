@@ -10,6 +10,7 @@ namespace LinqOverArray
         {
             Console.WriteLine("***** Fun with LINQ to Objects *****\n");
             QueryOverStrings();
+            QueryOverStringsWithExtensionMethods();
             Console.ReadLine();
         }
 
@@ -20,6 +21,8 @@ namespace LinqOverArray
 
             // Build a query expression to find the items in the array that have an embedded space.
             IEnumerable<string> subset = from g in currentVideoGames where g.Contains(" ") orderby g select g;
+
+            ReflectOverQueryResults(subset);
 
             // Print out the results.
             foreach (string s in subset)
@@ -33,7 +36,7 @@ namespace LinqOverArray
 
             // Build a query expression to find the items in the array that have an embedded space.
             IEnumerable<string> subset = currentVideoGames.Where(g => g.Contains(" ")).OrderBy(g => g).Select(g => g);
-
+            ReflectOverQueryResults(subset, "Extension Methods");
             // Print out the results.
             foreach (string s in subset)
                 Console.WriteLine("Item: {0}", s);
@@ -58,6 +61,13 @@ namespace LinqOverArray
 
             // Print out the results
 
+        }
+
+        static void ReflectOverQueryResults(object resultSet, string queryType = "Query Expressions")
+        {
+            Console.WriteLine($"***** Info about your query using {queryType} *****");
+            Console.WriteLine("resultSet is of type: {0}", resultSet.GetType().Name);
+            Console.WriteLine("resultSet location: {0}", resultSet.GetType().Assembly.GetName().Name);
         }
     }
 }
