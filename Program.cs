@@ -39,5 +39,25 @@ namespace LinqOverArray
                 Console.WriteLine("Item: {0}", s);
 
         }
+
+        static void QueryOverStringsLongHand()
+        {
+            // Assume we have an array of strings.
+            string[] currentVideoGames = { "Morrowind", "Uncharted 2", "Fallout 3", "Daxter", "System Shock 2" };
+
+            string[] gameWithSpaces = new string[5];
+
+            for (int i = 0; i < currentVideoGames.Length; i++)
+            {
+                if (currentVideoGames[i].Contains(" "))
+                    gameWithSpaces[i] = currentVideoGames[i];
+            }
+
+            // Now sort the items.
+            Array.Sort(gameWithSpaces);
+
+            // Print out the results
+
+        }
     }
 }
