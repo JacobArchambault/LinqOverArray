@@ -26,11 +26,12 @@ namespace LinqOverArray
             // Build a query expression to find the items in the array that have an embedded space.
             IEnumerable<string> subset = from g in currentVideoGames where g.Contains(" ") orderby g select g;
 
-            ReflectOverQueryResults(subset);
-
             // Print out the results.
             foreach (string s in subset)
                 Console.WriteLine("Item: {0}", s);
+
+            ReflectOverQueryResults(subset);
+
             Console.WriteLine();
         }
 
@@ -42,10 +43,11 @@ namespace LinqOverArray
 
             // Build a query expression to find the items in the array that have an embedded space.
             IEnumerable<string> subset = currentVideoGames.Where(g => g.Contains(" ")).OrderBy(g => g).Select(g => g);
-            ReflectOverQueryResults(subset, "Extension Methods");
             // Print out the results.
             foreach (string s in subset)
                 Console.WriteLine("Item: {0}", s);
+
+            ReflectOverQueryResults(subset, "Extension Methods");
 
             Console.WriteLine();
         }
@@ -89,6 +91,15 @@ namespace LinqOverArray
 
             foreach (var i in subset)
                 Console.WriteLine("Item: {0}", i);
+            Console.WriteLine();
+
+            // Change some data in the array.
+            numbers[0] = 4;
+
+            // Evaluate again (LINQ QUeries defer execution)
+            foreach (var j in subset)
+                Console.WriteLine($"{j} < 10");
+
             ReflectOverQueryResults(subset);
 
             Console.WriteLine();
