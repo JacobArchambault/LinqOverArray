@@ -111,5 +111,16 @@ namespace LinqOverArray
             Console.WriteLine("resultSet is of type: {0}", resultSet.GetType().Name);
             Console.WriteLine("resultSet location: {0}", resultSet.GetType().Assembly.GetName().Name);
         }
+
+        static void ImmediateExecution()
+        {
+            int[] numbers = { 10, 20, 30, 40, 1, 2, 3, 8};
+
+            // Get data RIGHT NOW as int[]
+            int[] subsetAsIntArray = (from i in numbers where i < 10 select i).ToArray<int>();
+
+            // Get data RIGHT NOW as List<int>.
+            List<int> subsetAsListOfInts = (from i in numbers where i < 10 select i).ToList<int>();
+        }
     }
 }
